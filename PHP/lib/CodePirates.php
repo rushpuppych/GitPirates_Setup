@@ -1,0 +1,207 @@
+<?php
+/**
+ * Class Category | core/Category.class.php
+ *
+ * @package     MyApp XYZ
+ * @subpackage  Categories
+ * @author      Severin Holm <info@severin.holm.ch>
+ * @version     v.1.1 (06/12/2017)
+ * @copyright   Copyright (c) 2017, Severin Holm
+ */
+
+/**
+ * CodePirates
+ * This is a PHP Wrapper for the CodePirate Game
+ */
+class CodePirates {
+	// Private Attributes
+	private $arrPlayer = [];
+	private $arrPlayers = [];
+	private $arrMap = [];
+	private $arrSpecial = [];
+	private $strIoFolder = '';
+	private $arrOutput = [];
+
+	/**
+	 * Constructor
+	 *
+	 * @param $strIoFolder	This is the Input/Output File Folder
+	 */
+	public function __construct($strIoFolder)
+	{
+		// Create Output Array Structure
+		$this->createOutputArrayStructure();
+
+		// Load File
+		$this->strIoFolder = $strIoFolder;
+		$strFileContent = file_get_contents($strIoFolder . DIRECTORY_SEPARATOR . 'input.json');
+
+		// Parse File
+		$arrFileContent = json_decode($strFileContent, true);
+
+		// Fill Attributes
+		$this->arrPlayer = $arrFileContent['player'];
+		$this->arrPlayers = $arrFileContent['players'];
+		$this->arrMap = $arrFileContent['map'];
+		$this->arrSpecials = $arrFileContent['specials'];
+	}
+
+	/**
+	 * public getMap
+	 * Returns the Raw Map Array from the Input File
+	 *
+	 * @param void
+	 * @return Array Map Array
+	 */
+	public function getMap()
+	{
+		return $this->arrMap;
+	}
+
+	/**
+	 * public getMapFieldByCoords
+	 * Returns a specific field by X and Y coorinates.
+	 * 1 = Blocked, 2 = Free to go, -1 not existing
+	 *
+	 * @param $numX		Integer X coordinate value
+	 * @param $numY		Integer Y coordinate value
+	 * @return int 		ENUM (1 = Blocked, 2 = Free to go, -1 not existing)
+	 */
+	public function getMapFieldByCoords($numX, $numY)
+	{
+		if(isset($this->arrMap[$numX][$numY])) {
+			return $this->arrMap[$numX][$numY];
+		}
+		return -1;
+	}
+
+	public function getPlayers()
+	{
+		return $this->arrPlayers;
+	}
+
+	public function getPlayerById($strUuId)
+	{
+		foreach($this->players as $arrPlayer) {
+			if($arrPlayer['id'] == $strUuId) {
+				return $arrPlayer;
+			}
+		}
+		return [];
+	}
+
+	public function getPlayerByCoords($numX, $numY)
+	{
+		foreach($this->players as $arrPlayer) {
+			if($arrPlayer['pos_x'] == $numX && $arrPlayer['pos_y'] == $numY) {
+				return $arrPlayer;
+			}
+		}
+		return [];
+	}
+
+	public function getMyPlayer()
+	{
+		return $this->arrPlayer;
+	}
+
+	public function getSpecials()
+	{
+		return $this->specials;
+	}
+
+	public function getSpecialGroup($strGroup)
+	{
+		if(isset($this->specials[$strGroup])) {
+			return $this->specials[$strGroup];
+		}
+		return [];
+	}
+
+	public function getSpecialById($strUuid)
+	{
+		foreach($this->specials as $arrSpecialGroup) {
+			foreach($arrSpecialGroup as $arrSpecial) {
+				if($arrSpecial['id'] == $strUuid) {
+					return $arrSpecial;
+				}
+			}
+		}
+		return [];
+	}
+
+	public function getSpecialByCoords($numX, $numY)
+	{
+		foreach($this->specials as $arrSpecialGroup) {
+			foreach($arrSpecialGroup as $arrSpecial) {
+				if($arrSpecial['pos_x'] == $numX && $arrSpecial['pos_y'] == $numY) {
+					return $arrSpecial;
+				}
+			}
+		}
+		return [];
+	}
+
+	public function actionMoveForward()
+	{
+		$this->arrOutput['order'] = 'MOVE_FORWARDS';
+	}
+
+	public function actionMoveBackwards()
+	{
+		$this->arrOutput['order'] = 'MOVE_BACKWARDS';
+	}
+
+	public function actionTurnLeft()
+	{
+		$this->arrOutput['order'] = 'TURN_LEFT';
+	}
+
+	public function actionTurnRight()
+	{
+		$this->arrOutput['order'] = 'TURN_RIGHT';
+	}
+
+	public function actionLoadCannon()
+	{
+		$this->arrOutput['order'] = 'CANNON_LOAD';
+	}
+
+	public function actionFireCannon($strDirection, $numPower)
+	{
+		$strDirection = strtoupper($strDirection);
+		if($strDirection == "LEFT" || $strDirection == "RIGHT") {
+			if($numPower > 0 && $numPower < 6) {
+				$this->arrOutput['order'] = 'CANNON_FIRE:{"cannon":' . $strDirection . ', "power":' . $numPower . '}';
+			}
+		}
+	}
+
+	public function log($strLogText)
+	{
+		echo $strLogText;
+	}
+
+	public function executeOrders()
+	{
+		// Write Output File
+		$this->writeOutputFile();
+	}
+
+	private function createOutputArrayStructure()
+	{
+		$arrOutput = [];
+		$arrOutput['console'] = [];
+		$arrOutput['order'] = "";
+		$this->arrOutput = $arrOutput;
+	}
+
+	private function writeOutputFile()
+	{
+		// Generate Content File String
+		$strFileContent = json_encode($this->arrOutput);
+
+		// Write File
+		file_put_contents($strIoFolder . DIRECTORY_SEPARATOR . 'output.json', $strFileContent);
+	}
+}
