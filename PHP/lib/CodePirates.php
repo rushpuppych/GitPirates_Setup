@@ -1,9 +1,7 @@
 <?php
 /**
- * Class Category | core/Category.class.php
+ * Class CodePirates
  *
- * @package     MyApp XYZ
- * @subpackage  Categories
  * @author      Severin Holm <info@severin.holm.ch>
  * @version     v.1.1 (06/12/2017)
  * @copyright   Copyright (c) 2017, Severin Holm
@@ -15,6 +13,7 @@
  */
 class CodePirates {
 	// Private Attributes
+	private $numTurn = 0;
 	private $arrPlayer = [];
 	private $arrPlayers = [];
 	private $arrMap = [];
@@ -40,6 +39,7 @@ class CodePirates {
 		$arrFileContent = json_decode($strFileContent, true);
 
 		// Fill Attributes
+		$this->numTurn = $arrFileContent['general']['turn'];
 		$this->arrPlayer = $arrFileContent['player'];
 		$this->arrPlayers = $arrFileContent['players'];
 		$this->arrMap = $arrFileContent['map'];
@@ -75,11 +75,26 @@ class CodePirates {
 		return -1;
 	}
 
+	/**
+	 * public getPlayers
+	 * Returns the Raw Player Array with all Player infomrations
+	 *
+	 * @param void
+	 * @return Array Players Array
+	 */
 	public function getPlayers()
 	{
 		return $this->arrPlayers;
 	}
 
+	/**
+	 * public getPlayerById
+	 * Returns a specific Player by ID. If there is no Player found the Return
+	 * will be a empty Array.
+	 *
+	 * @param $strUuId	This is the Unique Player ID
+	 * @return Array Player Array
+	 */
 	public function getPlayerById($strUuId)
 	{
 		foreach($this->players as $arrPlayer) {
@@ -90,6 +105,15 @@ class CodePirates {
 		return [];
 	}
 
+	/**
+	 * public getPlayerByCoords
+	 * Returns the Player located on a specific Coorinate on the map.
+	 * If there is no Player on the coordinate the Method returns a empty Array
+	 *
+	 * @param $numX	The X coordinate
+	 * @param $numY	The Y coordinate
+	 * @return Array Player Array
+	 */
 	public function getPlayerByCoords($numX, $numY)
 	{
 		foreach($this->players as $arrPlayer) {
