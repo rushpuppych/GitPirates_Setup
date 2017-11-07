@@ -5,13 +5,13 @@ This is the Codewrapper for PHP Based Ship Controll Scripts. It is a very Basic 
 ### GetShip ###
 Get Ship is Returning a Ship Array
 
-** Parameter **
+__Parameter__
 
 | Param  | DataType | Description |
 |--------|----------|-------------|
 |        |          |             |
 
-** Return **
+__Return__
 
 | Return | DataType | Description |
 |--------|----------|-------------|
