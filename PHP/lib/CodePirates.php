@@ -188,15 +188,15 @@ class CodePirates {
 
 	public function actionLoadCannon()
 	{
-		$this->arrOutput['order'] = 'CANNON_LOAD';
+		$this->arrOutput['order'] = 'LOAD_CANNON';
 	}
 
 	public function actionFireCannon($strDirection, $numPower)
 	{
-		$strDirection = strtoupper($strDirection);
-		if($strDirection == "LEFT" || $strDirection == "RIGHT") {
+		$strDirection = strtolower($strDirection);
+		if($strDirection == "left" || $strDirection == "right") {
 			if($numPower > 0 && $numPower < 6) {
-				$this->arrOutput['order'] = 'CANNON_FIRE:{"cannon":' . $strDirection . ', "power":' . $numPower . '}';
+				$this->arrOutput['order'] = 'FIRE_CANNON:{"cannon":\'' . $strDirection . '\', "power":' . $numPower . '}';
 			}
 		}
 	}
@@ -226,6 +226,6 @@ class CodePirates {
 		$strFileContent = json_encode($this->arrOutput);
 
 		// Write File
-		file_put_contents($strIoFolder . DIRECTORY_SEPARATOR . 'output.json', $strFileContent);
+		file_put_contents($this->strIoFolder . DIRECTORY_SEPARATOR . 'output.json', $strFileContent);
 	}
 }

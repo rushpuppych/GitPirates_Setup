@@ -13,7 +13,7 @@
  * @description: FEATURES
  */
 // Config and Initialize CodePirates Script
-$strIoFolder = "io/";
+$strIoFolder = dirname(__FILE__) . "/io";
 include_once("lib" . DIRECTORY_SEPARATOR . "CodePirates.php");
 main(new CodePirates($strIoFolder));
 
