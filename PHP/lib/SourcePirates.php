@@ -1,6 +1,6 @@
 <?php
 /**
- * Class CodePirates
+ * Class SourcePirates
  *
  * @author      Severin Holm <info@severin.holm.ch>
  * @version     v.1.1 (06/12/2017)
@@ -8,10 +8,10 @@
  */
 
 /**
- * CodePirates
- * This is a PHP Wrapper for the CodePirate Game
+ * SourcePirates
+ * This is a PHP Wrapper for the SourcePirate Game
  */
-class CodePirates {
+class SourcePirates {
 	// Private Attributes
 	private $numTurn = 0;
 	private $arrPlayer = [];

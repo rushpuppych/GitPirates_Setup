@@ -1,12 +1,11 @@
 <?php
 /*
- * _________            .___    __________.__               __
- * \_   ___ \  ____   __| _/____\______   \__|___________ _/  |_  ____   ______
- * /    \  \/ /  _ \ / __ |/ __ \|     ___/  \_  __ \__  \\   __\/ __ \ /  ___/
- * \     \___(  <_> ) /_/ \  ___/|    |   |  ||  | \// __ \|  | \  ___/ \___ \
- *  \______  /\____/\____ |\___  >____|   |__||__|  (____  /__|  \___  >____  >
- *         \/            \/    \/                        \/          \/     \/
- *
+ *   _________                                __________.__               __
+ *  /   _____/ ____  __ _________   ____  ____\______   \__|___________ _/  |_  ____   ______
+ *  \_____  \ /  _ \|  |  \_  __ \_/ ___\/ __ \|     ___/  \_  __ \__  \\   __\/ __ \ /  ___/
+ *  /        (  <_> )  |  /|  | \/\  \__\  ___/|    |   |  ||  | \// __ \|  | \  ___/ \___ \
+ * /_______  /\____/|____/ |__|    \___  >___  >____|   |__||__|  (____  /__|  \___  >____  >
+ *         \/                          \/    \/                        \/          \/     \/
  *
  * @author: YOUR NAME (YOUR EMAIL)
  * @datum: 00.00.0000
@@ -14,13 +13,13 @@
  */
 // Config and Initialize CodePirates Script
 $strIoFolder = dirname(__FILE__) . "/io";
-include_once("lib" . DIRECTORY_SEPARATOR . "CodePirates.php");
-main(new CodePirates($strIoFolder));
+include_once("lib" . DIRECTORY_SEPARATOR . "SourcePirates.php");
+main(new SourcePirates($strIoFolder));
 
 
 /**
  * Main Routine
- * @param CodePirates $objGame
+ * @param SourcePirates $objGame
  */
 function main(CodePirates $objGame)
 {
