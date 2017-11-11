@@ -41,8 +41,10 @@ This is the Path to the /io folder inside of your PHP Wrapper folder
 This is the Execution path for your script.
 php path/to/your/script/app.php
 ```
+
+## Test Ship ##
+Run a Singleplayer map and look on the ingame console if there is the message
+```
 it is running
 ```
 you are ready to go.
-
-# First Steps #
