@@ -1,3 +1,4 @@
+![CodePirates](https://github.com/rushpuppych/GitPirates/blob/master/app/assets/images/gui/logo_big.png?raw=true)
 # Getting Started
 ## Install PHP
 To use the PHP Language you need to install PHP first.
