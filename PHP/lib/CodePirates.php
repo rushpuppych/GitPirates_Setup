@@ -126,6 +126,13 @@ class CodePirates {
 		return [];
 	}
 
+	/**
+	 * public getMyPlayer
+	 * Returns the Main Player Array. The Main Player is the ship you are controlling.
+	 *
+	 * @param void
+	 * @return Array Player Array
+	 */
 	public function getMyPlayer()
 	{
 		return $this->arrPlayer;
