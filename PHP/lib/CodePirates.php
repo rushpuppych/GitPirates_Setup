@@ -20,6 +20,7 @@ class CodePirates {
 	private $arrSpecial = [];
 	private $strIoFolder = '';
 	private $arrOutput = [];
+	private $arrLocalSession = [];
 
 	/**
 	 * Constructor
@@ -44,6 +45,7 @@ class CodePirates {
 		$this->arrPlayers = $arrFileContent['players'];
 		$this->arrMap = $arrFileContent['map'];
 		$this->arrSpecials = $arrFileContent['specials'];
+		$this->arrLocalSession = json_decode(base64_decode($arrFileContent['session']), true);
 	}
 
 	/**
@@ -199,6 +201,17 @@ class CodePirates {
 				$this->arrOutput['order'] = 'FIRE_CANNON:{"cannon":\'' . $strDirection . '\', "power":' . $numPower . '}';
 			}
 		}
+	}
+
+	public function setSession($strKey, $strValue) {
+		$this->arrLocalSession[$strKey] = $strValue;
+	}
+
+	public function getSession($strKey, $strDefault = '') {
+		if(isset($this->arrLocalSession[$strKey])) { // ilegal string offset
+			return $this->arrLocalSession[$strKey];
+		}
+		return $strDefault;
 	}
 
 	public function log($strLogText)
