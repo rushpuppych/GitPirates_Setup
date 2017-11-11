@@ -1,7 +1,7 @@
 # CodePirate.php #
 This is the Codewrapper for PHP Based Ship Control Scripts. It is a very basic class that works as a Array manager. It can Read the "Input.json" file and generates the "output.json" file. It has a few simple methods that are quite useful to code your Ship Control Script with PHP.
 
-## Public Methodes ##
+## Public Methods ##
 ### GetShip ###
 Get Ship is Returning a Ship Array
 
@@ -21,5 +21,10 @@ __Return__
 
 ## Structures ##
 ### Map Array  ###
+
+### Players Array ###
 ### Player Array ###
+
+### Specials Array ###
+### Special Group Array ###
 ### Special Array ###

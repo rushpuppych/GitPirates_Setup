@@ -26,7 +26,7 @@ function main(CodePirates $objGame)
 {
 
 	// Write your PHP Code here...
-
+	$objGame->log('it is running');
 
 	// Send Orders to the Game
 	$objGame->executeOrders();
