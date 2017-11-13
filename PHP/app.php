@@ -21,7 +21,7 @@ main(new SourcePirates($strIoFolder));
  * Main Routine
  * @param SourcePirates $objGame
  */
-function main(CodePirates $objGame)
+function main(SourcePirates $objGame)
 {
 
 	// Write your PHP Code here...
