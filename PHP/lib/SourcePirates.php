@@ -17,7 +17,7 @@ class SourcePirates {
 	private $arrPlayer = [];
 	private $arrPlayers = [];
 	private $arrMap = [];
-	private $arrSpecial = [];
+	private $arrSpecials = [];
 	private $strIoFolder = '';
 	private $arrOutput = [];
 	private $arrLocalSession = [];
@@ -25,7 +25,7 @@ class SourcePirates {
 	/**
 	 * Constructor
 	 *
-	 * @param $strIoFolder	This is the Input/Output File Folder
+	 * @param $strIoFolder string This is the Input/Output File Folder
 	 */
 	public function __construct($strIoFolder)
 	{
@@ -53,7 +53,7 @@ class SourcePirates {
 	 * Returns the Raw Map Array from the Input File
 	 *
 	 * @param void
-	 * @return Array Map Array
+	 * @return array Map Array
 	 */
 	public function getMap()
 	{
@@ -82,7 +82,7 @@ class SourcePirates {
 	 * Returns the Raw Player Array with all Player infomrations
 	 *
 	 * @param void
-	 * @return Array Players Array
+	 * @return array Players Array
 	 */
 	public function getPlayers()
 	{
@@ -94,12 +94,12 @@ class SourcePirates {
 	 * Returns a specific Player by ID. If there is no Player found the Return
 	 * will be a empty Array.
 	 *
-	 * @param $strUuId	This is the Unique Player ID
-	 * @return Array Player Array
+	 * @param $strUuId string This is the Unique Player ID
+	 * @return array Player Array
 	 */
 	public function getPlayerById($strUuId)
 	{
-		foreach($this->players as $arrPlayer) {
+		foreach($this->arrPlayers as $arrPlayer) {
 			if($arrPlayer['id'] == $strUuId) {
 				return $arrPlayer;
 			}
@@ -112,13 +112,13 @@ class SourcePirates {
 	 * Returns the Player located on a specific Coorinate on the map.
 	 * If there is no Player on the coordinate the Method returns a empty Array
 	 *
-	 * @param $numX	The X coordinate
-	 * @param $numY	The Y coordinate
-	 * @return Array Player Array
+	 * @param $numX	int The X coordinate
+	 * @param $numY	int The Y coordinate
+	 * @return array Player Array
 	 */
 	public function getPlayerByCoords($numX, $numY)
 	{
-		foreach($this->players as $arrPlayer) {
+		foreach($this->arrPlayers as $arrPlayer) {
 			if($arrPlayer['pos_x'] == $numX && $arrPlayer['pos_y'] == $numY) {
 				return $arrPlayer;
 			}
@@ -131,7 +131,7 @@ class SourcePirates {
 	 * Returns the Main Player Array. The Main Player is the ship you are controlling.
 	 *
 	 * @param void
-	 * @return Array Player Array
+	 * @return array Player Array
 	 */
 	public function getMyPlayer()
 	{
@@ -140,20 +140,20 @@ class SourcePirates {
 
 	public function getSpecials()
 	{
-		return $this->specials;
+		return $this->arrSpecials;
 	}
 
 	public function getSpecialGroup($strGroup)
 	{
 		if(isset($this->specials[$strGroup])) {
-			return $this->specials[$strGroup];
+			return $this->arrSpecials[$strGroup];
 		}
 		return [];
 	}
 
 	public function getSpecialById($strUuid)
 	{
-		foreach($this->specials as $arrSpecialGroup) {
+		foreach($this->arrSpecials as $arrSpecialGroup) {
 			foreach($arrSpecialGroup as $arrSpecial) {
 				if($arrSpecial['id'] == $strUuid) {
 					return $arrSpecial;
@@ -165,7 +165,7 @@ class SourcePirates {
 
 	public function getSpecialByCoords($numX, $numY)
 	{
-		foreach($this->specials as $arrSpecialGroup) {
+		foreach($this->arrSpecials as $arrSpecialGroup) {
 			foreach($arrSpecialGroup as $arrSpecial) {
 				if($arrSpecial['pos_x'] == $numX && $arrSpecial['pos_y'] == $numY) {
 					return $arrSpecial;
